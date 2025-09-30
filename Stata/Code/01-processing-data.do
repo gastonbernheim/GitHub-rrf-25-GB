@@ -66,7 +66,7 @@
 * Tidy Data: HH-member 
 *-------------------------------------------------------------------------------*
 
-// 	preserve 
+	preserve 
 
 		keep `mem_vars' `ids'
 
@@ -84,13 +84,17 @@
 		// add variable/value labels
 		// create a template first, then edit the template and change the syntax to 
 		// iecodebook apply
-		iecodebook template 	using ///
-								"${outputs}/hh_mem_codebook.xlsx"
+		
+		// iecodebook template using "${outputs}/hh_mem_codebook.xlsx"
+		
+		iecodebook apply using "${outputs}/hh_mem_codebook.xlsx"
 								
-		isid ???					
+		isid hhid member, sort					
 		
 		* Save data: Use iesave to save the clean data and create a report 
-		iesave 	???  
+		iesave 	"${data}/Intermediate/TZA_CCT_HH_mem.dta" , ///
+						idvars(hhid member) version(15) replace ///
+						report(path("${outputs}/TZA_CCT_HH_mem_report.csv") replace)
 				
 	restore			
 		
@@ -98,19 +102,27 @@
 * Tidy Data: HH
 *-------------------------------------------------------------------------------	
 
-	preserve 
+// 	preserve 
 		
 		* Keep HH vars
 		keep `ids' `hh_vars'
 		
 		* Check if data type is string
-				
+		describe	
 		
 		* Fix data types 
 		* numeric should be numeric
 		* dates should be in the date format
 		* Categorical should have value labels 
 		
+		
+		
+		encode ar_farm_unit, gen(ar_farm_unit_2)
+		drop ar_farm_unit
+		rename ar_farm_unit_2 ar_farm_unit
+		
+		
+		order variable, after(variable_after)
 				
 		
 		* Turn numeric variables with negative values into missings
@@ -126,18 +138,18 @@
 		sum ???
 		
 		* dropping, ordering, labeling before saving
-		drop 	???
+		drop ar_farm_unit submissionday crop_other
 				
-		order 	???
+		order ar_unit, after(ar_farm)
 		
-		lab var ???
+		lab var submissiondate "Date of Interview"
 		
-		isid ???
+		isid hhid, sort
 		
 		* Save data		
-		iesave 	"${data}/Intermediate/???", ///
-				idvars(???)  version(???) replace ///
-				report(path("${outputs}/???.csv") replace)  
+		iesave 	"${data}/Intermediate/TZA_CCT_HH.dta", ///
+				idvars(hhid)  version(15) replace ///
+				report(path("${outputs}/TZA_CCT_HH_report.csv") replace)  
 		
 	restore
 	
