@@ -11,8 +11,8 @@
 	
 	* Add file paths to DataWork folder and the Github folder for RRF2024
 	if "`c(username)'" == "wb639770" {
-        global onedrive "C:/Users/wb639770/OneDrive - WBG/Documents/DataWork"
-		global github 	"C:/Users/wb639770/OneDrive - WBG/Documents/Github/GitHub-rrf-25-GB"
+        global onedrive "C:/Users/wb639770/OneDrive - WBG/WB/WBG Reproducibility/RRF-25/DataWork"
+		global github 	"C:/Users/wb639770/OneDrive - WBG/WB/Github/GitHub-rrf-25-GB"
     }
 	
 	
@@ -21,7 +21,7 @@
 	global code 	"${github}/Stata/Code"
 	global outputs 	"${github}/Stata/Outputs"
 	
-	sysdir set PLUS "${github}/Stata/Code"
+	sysdir set PLUS "${code}/ado"
 
 
 	* Install packages 
