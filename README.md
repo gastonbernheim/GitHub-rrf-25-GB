@@ -1,5 +1,7 @@
-# Reproducible Research Fundamentals - September 2025
+# Reproducible Research Fundamentals 2025
 ## Using GitHub for Collaborative Research - README
+
+September 30, 2025
 
 ## Introduction
 
