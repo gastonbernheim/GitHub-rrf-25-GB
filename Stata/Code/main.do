@@ -3,16 +3,16 @@
 *******************************************************************************/
 
 	* Set version
-	*version ???
+	version 18.5
 
 	* Set project global(s)	
 	// User: you 
 	display "`c(username)'" 	//Check username and copy to set project globals by user
 	
 	* Add file paths to DataWork folder and the Github folder for RRF2024
-	if "`c(username)'" == "" {
-        *global onedrive "???/DataWork"
-		global github 	"???/GitHub-rrf-24"
+	if "`c(username)'" == "wb639770" {
+        global onedrive "C:/Users/wb639770/OneDrive - WBG/Documents/DataWork"
+		global github 	"C:/Users/wb639770/OneDrive - WBG/Documents/Github/GitHub-rrf-25-GB"
     }
 	
 	
@@ -21,7 +21,7 @@
 	global code 	"${github}/Stata/Code"
 	global outputs 	"${github}/Stata/Outputs"
 	
-	sysdir set PLUS "???"
+	sysdir set PLUS "${github}/Stata/Code"
 
 
 	* Install packages 
